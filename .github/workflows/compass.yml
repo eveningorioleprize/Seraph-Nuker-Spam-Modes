@@ -1,0 +1,31 @@
+name: "Banner"
+run-name: "FOLIO"
+"on":
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+permissions:
+  id-token: write
+  pages: write
+  contents: read
+jobs:
+  Koala:
+    concurrency:
+      group: "COMPASS"
+      cancel-in-progress: true
+    runs-on: ubuntu-24.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.aurora.outputs.page_url }}
+    steps:
+      - name: "Fountain"
+        uses: actions/checkout@v6
+      - name: "cinder"
+        uses: actions/configure-pages@v6
+      - name: "Island"
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+      - name: "Cedar"
+        id: aurora
+        uses: actions/deploy-pages@v5
